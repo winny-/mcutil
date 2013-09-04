@@ -1,0 +1,15 @@
+{% if data['plot'] %}
+<img src="data:image/png;base64,{{ data['plot'] }}" />
+<br />
+<ul>
+  <li>Known: {{ data['locations'][0] }}</li>
+  <li>Clockwise: {{ data['locations'][1] }}</li>
+  <li>Counterclockwise: {{ data['locations'][2] }}</li>
+</ul>
+<br />
+{% endif %}
+<form method="post">
+  <input type="text" name="x" value="{{ data['form']['x'] }}" />
+  <input type="text" name="z" value="{{ data['form']['z'] }}" />
+  <input type="submit" />
+</form>
