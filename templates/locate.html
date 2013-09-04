@@ -1,0 +1,23 @@
+{% if location['result'] %}
+<table>
+  <tr>
+    <th>x</th>
+    <th>z</th>
+  </tr>
+  <tr>
+    <td>{{ location['result'][0] }}</td>
+    <td>{{ location['result'][1] }}</td>
+  </tr>
+</table>
+{% endif %}
+<form method="post">
+  <input type="text" name="x1" value="{{ location['form']['x1'] }}" />
+  <input type="text" name="z1" value="{{ location['form']['z1'] }}" />
+  <input type="text" name="f1" value="{{ location['form']['f1'] }}" />
+  <br />
+  <input type="text" name="x2" value="{{ location['form']['x2'] }}" />
+  <input type="text" name="z2" value="{{ location['form']['z2'] }}" />
+  <input type="text" name="f2" value="{{ location['form']['f2'] }}" />
+  <br />
+  <input type="submit" />
+</form>
