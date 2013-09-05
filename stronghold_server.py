@@ -16,11 +16,7 @@ def plot():
     data['form'] = request.form
     if request.method == 'POST':
         data['locations'] = stronghold.guess_locations((float(request.form['x']), float(request.form['z'])))
-        x = []
-        y = []
-        for i in data['locations']:
-            x.append(i[0])
-            y.append(i[1])
+        x, y = zip(*data['locations'])
         pylab.scatter(x, y)
         buf = io.BytesIO()
         pylab.savefig(buf, format='png')
@@ -36,13 +32,11 @@ def locate():
     location['form'] = request.form
 
     if request.method == 'POST':
-        location1 = (float(request.form['x1']), float(request.form['z1']),
+        location['1'] = (float(request.form['x1']), float(request.form['z1']),
                      float(request.form['f1']))
-        location2 = (float(request.form['x2']), float(request.form['z2']),
+        location['2'] = (float(request.form['x2']), float(request.form['z2']),
                      float(request.form['f2']))
-        location['1'] = location1
-        location['2'] = location2
-        location['result'] = stronghold.locate(location1, location2)
+        location['result'] = stronghold.locate(location['1'], location['2'])
     return render_template('locate.html', location=location)
 
 
