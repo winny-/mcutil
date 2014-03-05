@@ -17,7 +17,8 @@ def plot():
     data = {}
     data['form'] = request.form
     if request.method == 'POST':
-        known_location = stronghold.Location(float(request.form['x']), float(request.form['z']))
+        known_location = stronghold.Location(float(request.form['x']),
+                                             float(request.form['z']))
         data['locations'] = stronghold.guess_locations(known_location)
         x, y = zip(*data['locations'])
         plt.scatter(x, y)

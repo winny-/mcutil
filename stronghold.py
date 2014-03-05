@@ -16,7 +16,8 @@ Vector = namedtuple('Vector', ['x', 'z', 'f'])
 def rotate(point, direction=CLOCKWISE):
     """
     Find a stronghold 120 degrees clockwise or counter-clockwise from point.
-    point is an tuple of x and z. direction can either by CLOCKWISE or COUNTERCLOCKWISE
+    point is an tuple of x and z. direction can either by CLOCKWISE or
+    COUNTERCLOCKWISE.
     """
 
     if direction == CLOCKWISE:
@@ -33,13 +34,16 @@ def rotate(point, direction=CLOCKWISE):
 
 def guess_locations(location):
     location = Location(*location)
-    return (location, rotate(location, CLOCKWISE), rotate(location, COUNTERCLOCKWISE))
+    return (location,
+            rotate(location, CLOCKWISE),
+            rotate(location, COUNTERCLOCKWISE))
 
 
 def locate(location1, location2):
     """
     Locate a stronghold based on two tuples of data: location1 and location2.
-    Each contains a x coordinate, a z coordinate, and the value of the Minecraft "facing" debug value.
+    Each contains a x coordinate, a z coordinate, and the value of the
+    Minecraft "facing" debug value.
     """
 
     # y-X1=tan(-F1deg)(x-Z1) ; y-X2=tan(-F2deg)(x-Z2)
