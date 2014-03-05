@@ -10,9 +10,10 @@ COUNTERCLOCKWISE = 'counter-clockwise'
 
 
 def rotate(point, direction=CLOCKWISE):
-    '''Find a stronghold 120 degrees clockwise or counter-clockwise from point.
+    """
+    Find a stronghold 120 degrees clockwise or counter-clockwise from point.
     point is an tuple of x and z. direction can either by CLOCKWISE or COUNTERCLOCKWISE
-    '''
+    """
 
     if direction == CLOCKWISE:
         radians = math.radians(-120)
@@ -31,13 +32,14 @@ def guess_locations(location):
 
 
 def locate(location1, location2):
-    '''Locate a stronghold based on two tuples of data: location1 and location2.
+    """
+    Locate a stronghold based on two tuples of data: location1 and location2.
     Each contains a x coordinate, a z coordinate, and the value of the Minecraft "facing" debug value.
-    '''
+    """
 
     # y-X1=tan(-F1deg)(x-Z1) ; y-X2=tan(-F2deg)(x-Z2)
 
-    # y+x1=f1(x+z1) ; y+x2=f2(x+z2) 
+    # y+x1=f1(x+z1) ; y+x2=f2(x+z2)
     x1 = -location1[0]
     z1 = -location1[1]
     f1 = math.tan(-math.radians(location1[2]))
