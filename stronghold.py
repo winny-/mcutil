@@ -2,11 +2,15 @@
 #
 # This file is in the public domain.
 
-import math
+from collections import namedtuple
+from math import cos, radians, sin, tan
 
 
 CLOCKWISE = 'clockwise'
 COUNTERCLOCKWISE = 'counter-clockwise'
+
+Location = namedtuple('Location', ['x', 'z'])
+Vector = namedtuple('Vector', ['x', 'z', 'f'])
 
 
 def rotate(point, direction=CLOCKWISE):
@@ -16,18 +20,19 @@ def rotate(point, direction=CLOCKWISE):
     """
 
     if direction == CLOCKWISE:
-        radians = math.radians(-120)
+        radians_ = radians(-120)
     elif direction == COUNTERCLOCKWISE:
-        radians = math.radians(120)
+        radians_ = radians(120)
     else:
         raise RuntimeError('direction "{}" is unknown.'.format(direction))
 
     # {{cos(t), -sin(t)},{sin(t), cos(t)}} {{x},{z}}
-    return (math.cos(radians) * point[0] + -math.sin(radians) * point[1],
-            math.sin(radians) * point[0] + math.cos(radians) * point[1])
+    return Location(cos(radians_) * point[0] + -sin(radians_) * point[1],
+                    sin(radians_) * point[0] + cos(radians_) * point[1])
 
 
 def guess_locations(location):
+    location = Location(*location)
     return (location, rotate(location, CLOCKWISE), rotate(location, COUNTERCLOCKWISE))
 
 
@@ -42,10 +47,10 @@ def locate(location1, location2):
     # y+x1=f1(x+z1) ; y+x2=f2(x+z2)
     x1 = -location1[0]
     z1 = -location1[1]
-    f1 = math.tan(-math.radians(location1[2]))
+    f1 = tan(-radians(location1[2]))
     x2 = -location2[0]
     z2 = -location2[1]
-    f2 = math.tan(-math.radians(location2[2]))
+    f2 = tan(-radians(location2[2]))
 
     # y+x1=f1*x+tmp_z1 ; y+x2=f2*x+tmp_z2
     tmp_z1 = f1 * z1
@@ -72,4 +77,4 @@ def locate(location1, location2):
     y = tmp - x2
 
     # yeah... x is really z and y is really x. Deal with it.
-    return (y, x)
+    return Location(y, x)
