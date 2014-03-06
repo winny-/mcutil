@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request
 import matplotlib
 matplotlib.use('Agg')  # Work without a display.
 from matplotlib import pyplot as plt
@@ -48,9 +48,4 @@ def locate():
 
 @app.route('/')
 def index():
-    return send_from_directory('static', filename='homepage.html')
-
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
+    return app.send_static_file('homepage.html')
