@@ -1,4 +1,5 @@
-from mcutil.stronghold import rotate, guess_locations, locate, Vector, Location
+from mcutil.common import Point, Vector
+from mcutil.stronghold import rotate, guess_locations, locate
 import unittest
 
 
@@ -11,7 +12,7 @@ class Test(unittest.TestCase):
                 Vector(498, 363, 72.82),
                 Vector(512, 176, 61.81)
                 ),
-            'output': Location(-293, 608)
+            'output': Point(-293, 608)
             }
         ]
 
@@ -24,7 +25,7 @@ class Test(unittest.TestCase):
     def test_locate(self):
         for truth in self.locate_truths:
             result = locate(*truth['input'])
-            self.assertEquals(Location(result.x, result.z), truth['output'])
+            self.assertEquals(result, truth['output'])
 
 
 if __name__ == '__main__':
