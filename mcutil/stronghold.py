@@ -1,7 +1,3 @@
-# stronghold.py
-#
-# This file is in the public domain.
-
 from common import simplify, Point
 from math import cos, radians, sin, tan
 
