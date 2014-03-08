@@ -6,7 +6,7 @@ matplotlib.use('Agg')  # Work without a display.
 from matplotlib import pyplot as plt
 import io
 import base64
-import stronghold
+import mcutil.stronghold as stronghold
 
 
 app = Flask(__name__)

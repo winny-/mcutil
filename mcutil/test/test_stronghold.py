@@ -1,4 +1,4 @@
-from stronghold import rotate, guess_locations, locate, Vector, Location
+from mcutil.stronghold import rotate, guess_locations, locate, Vector, Location
 import unittest
 
 
