@@ -1,4 +1,4 @@
-from common import simplify, Point
+from .common import simplify, Point
 from math import cos, radians, sin, tan
 
 

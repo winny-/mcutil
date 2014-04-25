@@ -6,8 +6,8 @@ matplotlib.use('Agg')  # Work without a display.
 from matplotlib import pyplot as plt
 import io
 import base64
-from mcutil.common import simplify, Point, Vector
-import mcutil.stronghold as stronghold
+from ..common import simplify, Point, Vector
+from .. import stronghold
 
 
 app = Flask(__name__)

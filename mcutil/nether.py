@@ -4,7 +4,7 @@ in Minecraft.
 """
 
 
-from mcutil.common import simplify, Point
+from .common import simplify, Point
 
 
 def overworld_to_nether(coord):
